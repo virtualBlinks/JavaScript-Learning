@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <style>
+        #todoDiv {
+            width: 460px;
+        }
+
+        #butt {
+            background-color: red;
+            color: white;
+            border: none;
+            height: 35px;
+            width: 100px;
+            border-radius: 5px;
+            float: right;
+        }
+        table{
+            margin-top: 30px;
+            table-layout: fixed;
+            width: 100%;
+            background-color: yellow;
+
+        }
+        
+        table, tr, td, tbody{
+            /* border: 1px solid black; */
+            padding: 10px;
+            border-collapse: collapse;
+        }
+        #numbering{
+            padding: 3px;
+            width: 20px;
+            text-align: center;
+        }
+        #addButton{
+            background-color: green;
+            color: white;
+            width: 100px;
+            height: 37px;
+            border: none;
+
+        }
+        #todoInput{
+            width: 180px;
+            height: 30px; 
+        }
+        #dueDate{
+            width: 150px;
+            height: 32px;
+        }
+    </style>
+</head>
+
+<body>
+    <input onkeydown="show(event)" id="todoInput" type="text">
+    <input id="dueDate" type="date">
+    <button id="addButton">Add</button> <br> 
+    <small id="error"></small>
+    <div id="todoDiv">
+        <table>
+            <tbody id="todoTableBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        let todoList = [
+            {
+            name: 'Watch movies',
+            dueDate:  '2022-12-22'
+        },
+        {
+            name: 'Watch Dishes',
+            dueDate:  '2022-12-22'
+        }
+        ];
+
+        display();
+        function show(event) {
+            if (event.key === 'Enter') {
+                display();
+            }
+        }
+
+            document.getElementById('addButton').addEventListener('click', () =>{
+                display() 
+            })
+        function display() {
+            const todoTableBody = document.getElementById('todoTableBody');
+            let todoInput = document.getElementById('todoInput').value;
+            let dueDate = document.getElementById('dueDate').value
+
+
+            if (todoInput !== '' && dueDate !== '') {
+                todoList.push({
+                    name: todoInput,
+                    dueDate: dueDate
+                });      
+
+            }
+            todoTableBody.innerHTML = '';
+            todoList.forEach((element, index) =>{
+                const eventTodo = element.name ;              
+                const date = element.dueDate ;  
+
+                todoTableBody.innerHTML += `
+                
+                    <tr>
+                       <td id="numbering">${index + 1}</td>
+                        <td> ${eventTodo} </td> 
+                        <td> ${date} </td> 
+                        <td> <button id="butt">Delete</button></td>                       
+                    </tr> `;
+            })
+
+            document.getElementById('todoInput').value = ''; 
+            document.getElementById('dueDate').value = ''; 
+    // to delete multiple delete button
+           (document.querySelectorAll('#butt'))
+           .forEach((deleteButton, index) =>{
+            deleteButton.addEventListener('click', () =>{
+                todoList.splice(index, 1);
+                display()
+            })
+           })
+        }
+        
+           
+               
+        // function deleteItem(i) {
+        //     todoList.splice(${i}, 1);
+        //     display();
+        // }
+    </script>
+</body>
+
+</html>

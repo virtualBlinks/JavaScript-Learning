@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays$loops</title>
+</head>
+
+<body>
+    <input onkeydown="show(event)" id="input" type="text">
+    <button onclick="display()">Click</button>
+    <p id="display2"></p>
+    <div id="output"></div>
+</body>
+<script>
+    let output = document.getElementById('output')
+    let display2 = document.getElementById('display2')
+    let MyArray = []
+
+    function show(event) {
+        if (event.key === 'Enter') {
+            display();
+        }
+    }
+    
+    function display() {
+        let input = document.getElementById('input').value
+        MyArray.push({ input })
+        output.innerHTML = ''
+        MyArray.map((el) => {
+            output.innerHTML += `<p> ${el.input} </p>`
+
+
+        })
+    }
+    // localStorage.setItem('list', JSON.stringify(el))
+
+    // let getValues = JSON.parse(localStorage.getItem('list'));
+    // if (getValues) {
+    //     getValues.forEach((el) => {
+    //         output.innerHTML += `<p>${el.input}</p>`;
+    //     });
+    // }
+
+
+
+
+
+
+    //    for (let index = 0; index < MyArray.length; index++) {
+    //     const element = MyArray[index];
+    //     document.body.innerHTML +=`<p> ${element} </p>`
+    //     localStorage.setItem('lister', JSON.stringify(element))
+    //    }
+    //  let getValue= JSON.parse(localStorage.getItem('lister'))
+    //  console.log(getValue);
+
+    //   MyArray.map((el)=>{
+    //       document.body.innerHTML +=`<p> ${el} </p>`
+    //     localStorage.setItem('listers', JSON.stringify(el))
+
+    //   })
+    //  let getValues= JSON.parse(localStorage.getItem('listers'))
+    //  console.log(getValues);
+
+
+
+</script>
+
+</html>

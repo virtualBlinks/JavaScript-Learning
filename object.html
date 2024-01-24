@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+</head>
+<body>
+    <script>
+        let product = {
+            Name: 'Socks',
+            Price: 1090
+        }
+        console.log(product);
+        product.name = "cotton socks"
+        console.log(product);
+
+        product.phoneItem = 'Iphone'
+        console.log(product);
+        delete product.phoneItem;
+        console.log(product);
+
+
+        const product2 = {
+            name: 'shirt',
+            // oject that dot notation can not give its property in this instance javascript would see the - as minus but by putting it in sqaure bracket notaion it sees it as an property and could be left as strings this property would still be identified
+            ['delivery-time']: " 1 day",
+            //   object in an object
+            rating:{
+                starts: 4.5,
+                count: 87
+            },
+            fun: function function1(){
+                console.log('function inside object');
+            }
+        }
+
+        console.log(product2);
+        console.log(product2['delivery-time']);
+        console.log(product2.rating);
+        console.log(product2.fun());
+//local storage
+        console.log(JSON.stringify(product2));
+        const jsonString = (JSON.stringify(product2))
+        console.log( JSON.parse(jsonString)); 
+
+
+    </script>
+</body>
+</html>

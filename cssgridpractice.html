@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <style>
+      body{
+        font-family: arial;
+      }
+      #todoDiv,  #inputDiv{
+        width: 800px;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 30px 150px 150px 100px;
+        column-gap: 70px;
+        row-gap: 10px;
+      }
+      #inputDiv{
+        margin-bottom: 10px;
+      }
+      #todoInput{
+            width: 200px;
+            height: 30px; 
+        }
+        #dueDate{
+            width: 200px;
+            height: 32px;
+        }
+        #addButton{
+            background-color: green;
+            color: white;
+            width: 100px;
+            height: 37px;
+            border: none;
+            cursor: pointer;
+        }
+        #butt {
+            background-color: red;
+            color: white;
+            border: none;
+            height: 35px;
+            width: 100px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #sn{
+            height: 30px
+        }
+    </style>
+</head>
+
+<body>
+    <div id="inputDiv">
+        <input id="sn" type="" placeholder="s/n">
+        <input onkeydown="show(event)" id="todoInput" type="text">
+        <input id="dueDate" type="date">
+        <button id="addButton" onclick="display()">Add</button> 
+    </div>
+    <div id="todoDiv"></div>
+
+    <script>
+        let todoList = [
+            {
+            name: 'Watch movies',
+            dueDate:  '2022-12-22'
+        },
+        {
+            name: 'Watch Dishes',
+            dueDate:  '2022-12-22'
+        }
+        ];
+
+        display();
+        function show(event) {
+            if (event.key === 'Enter') {
+                display();
+            }
+        }
+
+
+        function display() {
+            const todoDiv = document.getElementById('todoDiv');
+            let todoInput = document.getElementById('todoInput').value;
+            let dueDate = document.getElementById('dueDate').value
+
+
+            if (todoInput !== '' && dueDate !== '') {
+                todoList.push({
+                    name: todoInput,
+                    dueDate: dueDate
+                   
+                });      
+                
+            }
+
+            todoDiv.innerHTML = '';
+
+            for (let i = 0; i < todoList.length; i++) {
+                const element = todoList[i]; 
+                const eventTodo = element.name ;              
+                const date = element.dueDate ;  
+
+                todoDiv.innerHTML += `             
+                  
+                       <div> ${i + 1}</div>
+                       <div> ${eventTodo} </div>
+                       <div>${date} </div>
+                       <button id="butt" onclick="todoList.splice(${i}, 1);display();">Delete</button>                       
+                       `;
+            }
+
+            document.getElementById('todoInput').value = ''; 
+            document.getElementById('dueDate').value = ''; 
+        }
+        // function deleteItem(i) {
+        //     todoList.splice(${i}, 1);
+        //     display();
+        // }
+    </script>
+</body>
+
+</html>

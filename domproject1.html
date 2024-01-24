@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DomProjects</title>
+    <style>
+      .js-subscribe{
+         height: 35px;
+         width: 120px;
+         background-color: black;
+         color: white;
+         border: none;
+         font-weight: bold;
+         border-radius: 50px;
+         cursor: pointer;
+      }
+      .is-Subscribe{
+        background-color: grey;
+        color: black;
+      }
+    
+    </style>
+</head>
+<body>
+  
+    <p>youTube subscribe button</p>
+      <button class="js-subscribe" onclick="sub()">Subscribe</button>
+      <p>Amazon Shipping Calculator </p>
+      <input onkeydown="hadleCostKeyDown(event)
+      "id="input" placeholder="Cost of order">
+      <button onclick="calculateTotal()">Calculate</button>
+      <p id="content" ></p>
+    <script>
+       let input = document.getElementById("input")
+       let content = document.getElementById("content")
+
+       function hadleCostKeyDown(event) {
+        console.log(event.key);
+      if (event.key === 'Enter') {
+        calculateTotal();
+      }      
+      }
+       
+      function calculateTotal(event) {
+        let cost = Number(input.value)
+
+         if (cost < 40) {
+            cost = cost + 10 
+         }
+         content.innerHTML = `$${cost}` 
+
+      }
+
+
+
+
+
+
+
+          function sub() {
+    let buttonElement = document.querySelector('.js-subscribe')
+  if (buttonElement.innerHTML === 'Subscribe') {
+    buttonElement.innerHTML = 'Subscribed'
+    buttonElement.classList.add('is-Subscribe')
+  }else{
+    buttonElement.innerHTML = 'Subscribe'
+    buttonElement.classList.remove('is-Subscribe')
+
+  }    
+  } 
+</script>
+
+
+</body>
+</html>
